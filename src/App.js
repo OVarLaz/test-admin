@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
+import { theme } from "./assets/theme";
 import { Dashboard } from "./components/dashboard";
+import { authProvider } from "./components/authProvider";
 import { UserList } from "./components/users";
 import { ContentList, ContentEdit, ContentCreate } from "./components/contents";
 import PostIcon from "@material-ui/icons/Book";
@@ -22,7 +24,12 @@ const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 // const dataProvider = buildGraphQLProvider({ apolloClient });
 
 const App = () => (
-  <Admin dashboard={Dashboard} dataProvider={dataProvider}>
+  <Admin
+    dashboard={Dashboard}
+    authProvider={authProvider}
+    dataProvider={dataProvider}
+    theme={theme}
+  >
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource
       name="posts"
